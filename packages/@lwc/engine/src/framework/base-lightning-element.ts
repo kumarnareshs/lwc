@@ -42,6 +42,8 @@ import { Template, isUpdatingTemplate, getVMBeingRendered } from './template';
 import { logError } from '../shared/logger';
 import { getComponentTag } from '../shared/format';
 import { HTMLElementConstructor } from './base-bridge-element';
+import { membraneTag } from './membrane';
+import { EmptyObject } from './utils';
 
 /**
  * This operation is called with a descriptor of an standard html property
@@ -215,6 +217,7 @@ function BaseLightningElementConstructor(this: LightningElement) {
         vm.setHook = setHook;
         vm.getHook = getHook;
     }
+    defineProperty(component, membraneTag, EmptyObject);
     // attaching the shadowRoot
     const shadowRootOptions = {
         mode,
